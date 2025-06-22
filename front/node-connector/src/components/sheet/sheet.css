@@ -1,0 +1,303 @@
+body {
+  margin: 0;
+  overflow: hidden;
+}
+svg {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f0f0f0;
+  cursor: grab;
+}
+.node {
+  cursor: move;
+}
+.port {
+  fill: white;
+  stroke: black;
+  stroke-width: 1px;
+  cursor: crosshair;
+}
+.title {
+  font-family: sans-serif;
+  font-size: 14px;
+  text-anchor: middle;
+}
+line.connection {
+  stroke: black;
+  stroke-width: 2px;
+}
+
+#toolbar {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 6px 10px;
+  border-radius: 6px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+#toolbar input {
+  margin: 10px;
+}
+
+.palette-node {
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  user-select: none;
+}
+.palette-node:active {
+  background: #eee;
+}
+
+#palette {
+  max-width: 200px;
+}
+
+.card {
+  padding: 2px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.title {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0 0 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s ease;
+}
+
+.card:hover .title {
+  color: #ff6f61; /* Highlight on hover */
+}
+
+.description {
+  font-size: 0.75rem;
+  color: #666;
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .description {
+  opacity: 0.8; /* Subtle fade effect */
+}
+
+/* Modal Styling */
+.node-modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent overlay */
+}
+
+.node-modal-content {
+  background-color: #ffffff; /* White background */
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px;
+  max-width: 90%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  position: relative;
+}
+
+.node-modal-content h2 {
+  color: #333; /* Dark heading */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.node-modal-close {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  color: #aaa; /* Gray close button */
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.node-modal-close:hover {
+  color: #333; /* Darker gray on hover */
+}
+
+/* Form Styling */
+#node-modal-editForm div {
+  margin-bottom: 15px;
+}
+
+.node-modal-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333; /* Dark labels */
+}
+
+.node-modal-input[type="text"],
+.node-modal-input[type="checkbox"] {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  background-color: #f9f9f9; /* Light gray input background */
+  border: 1px solid #ccc; /* Subtle border */
+  color: #333; /* Dark text */
+  font-family: "Arial", sans-serif;
+  border-radius: 4px;
+}
+
+.node-modal-input[type="text"]:focus,
+.node-modal-input[type="checkbox"]:focus {
+  outline: none;
+  border-color: #aaa; /* Darker border on focus */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle glow effect */
+}
+
+/* Save Changes Button */
+#node-modal-saveChanges {
+  background-color: #ffffff; /* White background */
+  color: #333;
+  border: 1px solid #ccc; /* Subtle border */
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#node-modal-saveChanges:hover {
+  background-color: #f0f0f0; /* Slightly darker on hover */
+  border-color: #aaa; /* Darker border on hover */
+}
+
+/* Save Changes Button */
+.node-modal-delete-btn {
+  background-color: rgb(202, 18, 18); /* White background */
+  color: #fff;
+  border: 1px solid #ccc; /* Subtle border */
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  float: right;
+}
+
+.node-modal-delete-btn:hover {
+  background-color: rgb(209, 65, 65); /* Slightly darker on hover */
+  border-color: #aaa; /* Darker border on hover */
+}
+
+/* Button Styling */
+.execute-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #4caf50; /* Green background */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 10px;
+}
+
+/* Hover Effect */
+.execute-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+/* Active Effect */
+.execute-button:active {
+  transform: scale(0.98); /* Slightly shrink on click */
+}
+
+/* Icon Styling */
+.execute-button i {
+  margin-right: 8px; /* Space between icon and text */
+  font-size: 18px;
+}
+
+.red-circle {
+  stroke: #9e2121;
+}
+
+.green-circle {
+  stroke: rgb(39, 216, 39);
+}
+
+/* EDITOR TEXTAREA */
+
+/* General Reset */
+
+/* Textarea Styling */
+.editor-textarea {
+  width: 100%; /* Full width */
+  min-height: 200px; /* Minimum height */
+  max-height: 500px; /* Optional: Limit maximum height */
+  padding: 15px; /* Inner spacing */
+  font-family: "Courier New", Courier, monospace; /* Monospace font */
+  font-size: 16px; /* Font size */
+  line-height: 1.5; /* Line height for readability */
+  color: #333; /* Text color */
+  background-color: #f9f9f9; /* Light background */
+  border: 2px solid #ccc; /* Border */
+  border-radius: 8px; /* Rounded corners */
+  resize: vertical; /* Allow vertical resizing */
+  outline: none; /* Remove default outline */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+/* Focus State */
+.editor-textarea:focus {
+  border-color: #007bff; /* Highlight border on focus */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3); /* Subtle glow effect */
+}
+
+/* Placeholder Styling */
+.editor-textarea::placeholder {
+  color: #aaa; /* Light gray placeholder text */
+  font-style: italic; /* Italicize placeholder */
+}
+
+/* Scrollbar Styling (Optional) */
+.editor-textarea::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+.editor-textarea::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+}
+
+.editor-textarea::-webkit-scrollbar-thumb {
+  background: #888; /* Thumb color */
+  border-radius: 5px; /* Rounded thumb */
+}
+
+.editor-textarea::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker thumb on hover */
+}

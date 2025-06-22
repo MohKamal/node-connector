@@ -1,0 +1,39 @@
+.message-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.message-box.info {
+  border: 2px solid #007bff;
+}
+
+.message-box.warning {
+  border: 2px solid #ffc107;
+}
+
+.message-box.error {
+  border: 2px solid #dc3545;
+}
+
+.message-content p {
+  margin: 0 0 15px;
+}
+
+.message-actions button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.message-actions button:hover {
+  opacity: 0.9;
+}

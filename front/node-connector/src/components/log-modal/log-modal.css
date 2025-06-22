@@ -1,0 +1,84 @@
+/* Button to open the modal */
+.log-modal-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+/* Modal overlay */
+.log-modal-overlay {
+  position: fixed;
+  top: 0;
+  /* left: 0; */
+  right: 50px;
+  bottom: 0;
+  /* background-color: rgba(0, 0, 0, 0.7); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal content container */
+.log-modal-content {
+  background-color: #1e1e1e;
+  color: #fff;
+  width: 80%;
+  max-width: 650px;
+  min-width: 600px;
+  max-height: 95vh;
+  min-height: 90vh;
+  overflow-y: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+/* Modal header */
+.log-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.log-modal-title {
+  color: white;
+}
+
+/* Close button in the modal header */
+.log-modal-close-button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Logs container */
+.log-modal-log-container {
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+/* Individual log entry */
+.log-modal-log-entry {
+  padding: 5px 0;
+  border-bottom: 1px solid #333;
+}
+
+/* No logs placeholder */
+.log-modal-no-logs {
+  text-align: center;
+  color: #aaa;
+  margin-top: 20px;
+}
